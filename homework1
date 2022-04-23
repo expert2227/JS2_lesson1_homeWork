@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет магазин</title>
+</head>
+<body>
+    <header>
+        <button class="btn-cart" type="button">Корзина</button>
+    </header>
+    <main>
+        <div class="products"></div>
+    </main>
+    <script>
+        const products = [
+            {id: 1, title: 'Notebook', price: 1000},
+            {id: 2, title: 'Mouse', price: 100},
+            {id: 3, title: 'Keyboard', price: 250},
+            {id: 4, title: 'Gamepad', price: 150}
+        ];
+
+        const getProductHTMLString = (title, price) => {
+            return `<div class="product-item">
+                        <h3>${title}<h3>
+                        <p>${price}</p>
+                        <button class="by-btn">Добавить</button>
+                    </div>`;
+        };
+
+        // ниже представлены два способа решения задачи, forEach() не создает массив в отличие от map(), 
+        //позволяет спкойно перебрать его в вставить в разметку страницы без дополнительной трансформации
+        
+
+        // const renderProducts = (productList) => {
+        //     for (let i = 0; i < productList.length; i++) {
+        //        const list = getProductHTMLString(productList[i].title, productList[i].price);
+        //        document.querySelector('.products').innerHTML += list; 
+        //     }
+            
+        // }
+
+        
+        const renderProducts = (productList) => {
+            productList.forEach((good) => document.querySelector('.products').innerHTML += getProductHTMLString(good.title, good.price));
+        }
+        
+        renderProducts(products);
+    </script>
+</body>
+</html>
